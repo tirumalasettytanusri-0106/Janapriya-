@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Janapriya Upscale</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --navy:#10094e;--navy-mid:#262262;--navy-light:#4a58a8;
+  --ivory:#fcf8ff;--surface:#f6f2ff;--surface-mid:#e9e5ff;
+  --red:#e11d48;--r4:4px;--r8:8px;--r12:12px;--r16:16px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:var(--navy);line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(252,248,255,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:.5px solid rgba(16,9,78,.08)}
+.nav-logo{font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.04em;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy-light);text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent;transition:color .3s var(--ease),border-color .3s var(--ease)}
+.nav-links a.active,.nav-links a:hover{color:var(--navy);border-bottom-color:var(--navy)}
+.nav-cta{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;cursor:pointer;padding:12px 28px;border-radius:var(--r8);transition:all .3s var(--ease)}
+.nav-cta:hover{background:var(--navy-mid);transform:scale(1.03)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s var(--ease)}
+.mobile-menu{display:none;flex-direction:column;background:#fff;border-bottom:.5px solid rgba(16,9,78,.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-light);text-decoration:none;padding:16px 24px;border-bottom:.5px solid rgba(16,9,78,.06)}
+.mobile-menu a:hover{color:var(--navy)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--navy);overflow:hidden;padding-top:72px}
+
+/* ── BACKGROUND SLIDESHOW ── */
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg-slide{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  opacity:0;
+  transition:opacity 1.6s cubic-bezier(0.4,0,0.2,1);
+}
+.hero-bg-slide.active{opacity:.35}
+
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(16,9,78,.88) 0%,rgba(16,9,78,.45) 55%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:80px 64px;max-width:780px}
+.hero-label{display:block;font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:24px;opacity:0;transform:translateY(20px);animation:fadeUp .8s var(--ease) .1s forwards}
+.hero h1{font-family:'Manrope',sans-serif;font-size:clamp(48px,6vw,88px);font-weight:800;color:#fff;line-height:1;letter-spacing:-.04em;margin-bottom:28px;opacity:0;transform:translateY(20px);animation:fadeUp .8s var(--ease) .25s forwards}
+.hero-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,.75);max-width:480px;margin-bottom:48px;line-height:1.7;opacity:0;transform:translateY(20px);animation:fadeUp .8s var(--ease) .38s forwards}
+.search-bar{display:flex;gap:8px;align-items:center;max-width:620px;background:rgba(255,255,255,.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:.5px solid rgba(255,255,255,.15);border-radius:var(--r8);padding:8px;box-shadow:0 8px 32px rgba(0,0,0,.3);opacity:0;transform:translateY(20px);animation:fadeUp .8s var(--ease) .5s forwards}
+.search-field{flex:1;background:#fff;border-radius:var(--r4);display:flex;align-items:center;gap:10px;padding:10px 16px;min-width:0}
+.search-field svg{flex-shrink:0;opacity:.5}
+.search-field input,.search-field select{border:none;outline:none;background:transparent;font-size:13px;font-weight:500;color:var(--navy);width:100%;font-family:'Inter',sans-serif}
+.search-btn{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:#fff;color:var(--navy);border:none;cursor:pointer;padding:12px 24px;border-radius:var(--r4);white-space:nowrap;transition:all .3s var(--ease)}
+.search-btn:hover{background:var(--surface-mid);transform:scale(1.03)}
+.hero-stats{position:absolute;right:0;bottom:0;z-index:2;display:flex}
+.stat-card{background:rgba(252,248,255,.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-left:.5px solid rgba(255,255,255,.1);padding:28px 36px;text-align:center}
+.stat-num{display:block;font-family:'Manrope',sans-serif;font-size:36px;font-weight:800;color:#fff;letter-spacing:-.04em}
+.stat-label{display:block;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px}
+
+.ribbon{background:var(--surface);border-top:.5px solid rgba(16,9,78,.08);border-bottom:.5px solid rgba(16,9,78,.08);padding:20px 64px;overflow:hidden}
+.ribbon-inner{display:flex;gap:56px;align-items:center;white-space:nowrap}
+.ribbon-item{display:flex;align-items:center;gap:10px;color:var(--navy-light)}
+.ribbon-item svg{flex-shrink:0;width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;opacity:.7}
+.ribbon-item span{font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+
+/* ══ PROJECT SLIDER ══ */
+.projects-slider-section{background:var(--navy);padding:80px 0 56px;position:relative;overflow:hidden}
+.projects-slider-section::before{content:'';position:absolute;top:-140px;right:-140px;width:500px;height:500px;border-radius:50%;border:1px solid rgba(255,255,255,.04);pointer-events:none}
+.slider-header{padding:0 64px;margin-bottom:40px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.slider-eyebrow{display:block;font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.slider-h2{font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,46px);font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1}
+.slider-tabs{display:flex;gap:6px;background:rgba(255,255,255,.07);border-radius:var(--r8);padding:4px;flex-shrink:0}
+.stab{font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);border:none;background:transparent;cursor:pointer;padding:10px 22px;border-radius:6px;transition:all .3s var(--ease);white-space:nowrap}
+.stab.active{background:#fff;color:var(--navy)}
+.stab:hover:not(.active){color:rgba(255,255,255,.8);background:rgba(255,255,255,.07)}
+.slider-viewport{overflow:hidden}
+.slider-track{display:flex;gap:24px;padding:0 64px 8px;transition:transform .55s var(--ease);will-change:transform}
+.proj-slide-card{flex:0 0 calc(33.333% - 40px);border-radius:var(--r16);overflow:hidden;position:relative;cursor:pointer;transition:transform .4s var(--ease)}
+.proj-slide-card:hover{transform:translateY(-8px)}
+.proj-slide-img{width:100%;height:320px;object-fit:cover;display:block;transition:transform .7s var(--ease)}
+.proj-slide-card:hover .proj-slide-img{transform:scale(1.06)}
+.proj-slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(16,9,78,.93) 0%,rgba(16,9,78,.15) 55%,transparent 100%)}
+.proj-slide-content{position:absolute;bottom:0;left:0;right:0;padding:26px}
+.proj-status-badge{display:inline-block;font-family:'Manrope',sans-serif;font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:5px 14px;border-radius:99px;margin-bottom:12px}
+.badge-ongoing{background:rgba(74,88,168,.85);color:#fff}
+.badge-completed{background:rgba(22,163,74,.85);color:#fff}
+.badge-upcoming{background:rgba(225,29,72,.85);color:#fff}
+.proj-slide-name{font-family:'Manrope',sans-serif;font-size:19px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:5px;line-height:1.2}
+.proj-slide-loc{font-size:12px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:5px;margin-bottom:10px}
+.proj-slide-loc svg{width:10px;height:10px;flex-shrink:0;fill:rgba(255,255,255,.4)}
+.proj-slide-price{font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:#fff}
+.proj-slide-price span{font-size:11px;font-weight:400;color:rgba(255,255,255,.4);margin-left:5px}
+.proj-progress{margin-top:10px}
+.proj-progress-label{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.proj-progress-bar{height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.proj-progress-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--navy-light),#7c3aed);transition:width 1.1s var(--ease)}
+.slider-controls{display:flex;align-items:center;gap:14px;padding:28px 64px 0}
+.slider-arrow{width:44px;height:44px;border-radius:50%;border:.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s var(--ease);flex-shrink:0}
+.slider-arrow:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.38)}
+.slider-arrow:disabled{opacity:.2;cursor:default;pointer-events:none}
+.slider-arrow svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
+.sdots{display:flex;gap:8px;align-items:center;flex:1}
+.sdot{height:3px;border-radius:2px;background:rgba(255,255,255,.18);cursor:pointer;transition:all .4s var(--ease)}
+.sdot.active{background:#fff;width:28px !important}
+.sdot:not(.active){width:14px}
+.slider-count{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.08em;margin-left:auto}
+
+/* ══ REST OF PAGE ══ */
+.properties{padding:96px 64px;max-width:1440px;margin:0 auto}
+.eyebrow{display:block;font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+.section-h2{font-family:'Manrope',sans-serif;font-size:clamp(34px,4vw,56px);font-weight:800;color:var(--navy);letter-spacing:-.04em;line-height:1}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px}
+.explore-link{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-light);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .25s var(--ease)}
+.explore-link:hover{color:var(--navy)}
+.explore-link svg{transition:transform .25s var(--ease)}
+.explore-link:hover svg{transform:translateX(4px)}
+.prop-grid{display:grid;grid-template-columns:7fr 5fr;gap:24px}
+.prop-main{position:relative;overflow:hidden;border-radius:var(--r16);cursor:pointer;height:560px}
+.prop-main img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease)}
+.prop-main:hover img{transform:scale(1.04)}
+.prop-main-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(16,9,78,.85) 0%,rgba(16,9,78,.1) 50%,transparent 100%)}
+.prop-main-content{position:absolute;bottom:0;left:0;right:0;padding:36px}
+.badge{display:inline-block;font-family:'Manrope',sans-serif;font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;background:var(--red);color:#fff;padding:5px 14px;border-radius:99px;margin-bottom:16px}
+.prop-main-content h3{font-family:'Manrope',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:6px}
+.prop-main-content p{font-size:13px;color:rgba(255,255,255,.65)}
+.prop-side{display:flex;flex-direction:column;gap:24px}
+.prop-sm{cursor:pointer;border-radius:var(--r16);overflow:hidden;flex:1;display:flex;flex-direction:column}
+.prop-sm-img{position:relative;overflow:hidden;height:220px;border-radius:var(--r16)}
+.prop-sm-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease)}
+.prop-sm:hover .prop-sm-img img{transform:scale(1.04)}
+.prop-sm-info{padding:16px 4px 0}
+.prop-sm-title{font-family:'Manrope',sans-serif;font-size:17px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+.prop-sm-price{font-size:12px;font-weight:500;color:var(--navy-light);margin-top:4px}
+.legacy{background:var(--surface);padding:96px 64px}
+.legacy-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center}
+.legacy-img{position:relative}
+.legacy-img img{width:100%;border-radius:var(--r16);display:block;filter:grayscale(1);transition:filter 1s}
+.legacy-img:hover img{filter:grayscale(0)}
+.legacy-badge{position:absolute;bottom:-24px;right:-24px;background:var(--navy);color:#fff;padding:28px 32px;border-radius:var(--r16);text-align:center}
+.legacy-badge-num{display:block;font-family:'Manrope',sans-serif;font-size:48px;font-weight:800;line-height:1;letter-spacing:-.04em}
+.legacy-badge-lbl{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;opacity:.65;margin-top:6px}
+.legacy-text{padding-left:16px}
+.legacy-text .section-h2{margin-bottom:24px}
+.quote{font-size:16px;color:var(--navy-light);line-height:1.75;font-style:italic;border-left:2px solid var(--surface-mid);padding-left:24px;margin:24px 0}
+.author{display:flex;align-items:center;gap:14px;margin-top:24px}
+.author-avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;background:var(--surface-mid);flex-shrink:0}
+.author-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.author-name{font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:var(--navy)}
+.author-role{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-light);margin-top:2px}
+.cta{padding:96px 64px}
+.cta-inner{max-width:1100px;margin:0 auto;background:var(--navy);border-radius:var(--r16);padding:80px;text-align:center;position:relative;overflow:hidden}
+.cta-blob{position:absolute;border-radius:50%;pointer-events:none}
+.cta-blob-1{width:300px;height:300px;background:var(--navy-mid);opacity:.5;top:-80px;right:-80px;filter:blur(60px)}
+.cta-blob-2{width:300px;height:300px;background:var(--navy-light);opacity:.15;bottom:-80px;left:-80px;filter:blur(60px)}
+.cta-inner h2{font-family:'Manrope',sans-serif;font-size:clamp(30px,4vw,52px);font-weight:800;color:#fff;letter-spacing:-.04em;margin-bottom:16px;position:relative;z-index:1}
+.cta-sub{font-size:15px;color:rgba(255,255,255,.6);max-width:480px;margin:0 auto 40px;line-height:1.7;position:relative;z-index:1}
+.cta-btns{display:flex;gap:12px;justify-content:center;position:relative;z-index:1}
+.btn-white{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:#fff;color:var(--navy);border:none;cursor:pointer;padding:16px 40px;border-radius:var(--r8);transition:all .3s var(--ease);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-white:hover{transform:scale(1.04)}
+.btn-outline{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:transparent;color:#fff;border:.5px solid rgba(255,255,255,.25);cursor:pointer;padding:16px 40px;border-radius:var(--r8);transition:all .3s var(--ease)}
+.btn-outline:hover{background:rgba(255,255,255,.1)}
+footer{background:var(--navy);padding:48px 64px 32px;text-align:center}
+.footer-logo{font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.04em;color:#fff;margin-bottom:28px}
+.footer-links{display:flex;gap:36px;justify-content:center;margin-bottom:32px;list-style:none;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.8)}
+.footer-line{width:64px;height:.5px;background:rgba(255,255,255,.1);margin:0 auto 24px}
+.footer-copy{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:900px){
+  nav{padding:0 24px}
+  .nav-links,.nav-cta{display:none}
+  .nav-toggle{display:flex}
+  .hero-content{padding:48px 24px}
+  .search-bar{flex-wrap:wrap}
+  .hero-stats{position:static;flex-wrap:wrap}
+  .ribbon{padding:16px 24px}
+  .ribbon-inner{gap:28px}
+  .slider-header{padding:0 24px;flex-direction:column;align-items:flex-start}
+  .slider-tabs{width:100%;justify-content:center}
+  .slider-track{padding:0 24px 8px}
+  .proj-slide-card{flex:0 0 calc(85vw - 48px)}
+  .slider-controls{padding:20px 24px 0}
+  .properties{padding:64px 24px}
+  .prop-grid{grid-template-columns:1fr}
+  .prop-main{height:360px}
+  .legacy{padding:64px 24px}
+  .legacy-inner{grid-template-columns:1fr;gap:64px}
+  .legacy-badge{bottom:-16px;right:-8px;padding:20px 24px}
+  .legacy-badge-num{font-size:36px}
+  .legacy-text{padding-left:0}
+  .cta{padding:64px 24px}
+  .cta-inner{padding:48px 24px}
+  .cta-btns{flex-direction:column;align-items:center}
+  footer{padding:40px 24px 24px}
+  .section-header{flex-direction:column;align-items:flex-start;gap:16px}
+}
+.popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #111;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  z-index: 1000;
+}
+
+.popup.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <a class="nav-logo" href="index1 (2).html"><svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="56" height="56" rx="6" fill="#10094e"/><rect x="32" y="32" width="56" height="56" rx="6" fill="none" stroke="#e11d48" stroke-width="7"/><rect x="42" y="42" width="28" height="28" rx="4" fill="#e11d48"/><rect x="52" y="52" width="10" height="10" rx="2" fill="#10094e"/></svg>Janapriya Upscale</a>
+  <ul class="nav-links">
+    <li><a href="index1.html" class="active">Properties</a></li>
+    <li><a href="legacy.html">Legacy</a></li>
+    <li><a href="p1.html">Projects</a></li>
+    <li><a href="aboutus.html">About Us</a></li>
+    <li><a href="CONTACT.HTML" >Contact</a></li>
+  </ul>
+  <button class="nav-cta">Book a Visit</button>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index1.html">Properties</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="p1.html">Projects</a>
+  <a href="aboutus.html">About Us</a>
+  <a href="CONTACT.HTML">Contact</a>
+</div>
+<section class="hero">
+  <!-- 3-image crossfade background slideshow -->
+  <div class="hero-bg">
+    <div class="hero-bg-slide active" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXkmvJkZLhHugH-pa6emzophuJo5GZweaMAsh1jYAW4uyasqUulcAMNfrxAcYZSG6F6jgVlcqhT4_BVJ4TIlaVqrt2HVObs8-Fbdty8AZi3Inw6vyhzApxR9-EZg2y1sQCF1Qb5Jp8kzA7jlvH1YxL-cR0XacaF5S-JJjrF2lIa12Q16pqAmb_-8kigx8DWGXagiBvLCGRw1B3x9KlS19qafmEmnpKxJJr9THv_mNd0hQ-shVfQs0WulOZGXAgVCSeQyFUJ2b26wMA')"></div>
+    <div class="hero-bg-slide" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVazGELfxvNiWVwUHBojkrjI9ZellHGH5RKT-lfAfZccI6BeqQNJhiWLP5k0N0NRCuEhiYByqAoaimG-fBw1rQgb8bQxWNlxJlXfkS5hG3kUASshycS6QNW8iV4yubgv0MTUptIkgZd0PAciqHk6NePNmiYJZSM3PQKw7411Zynxx7zSg8oEQsTchG8ZAsrLdwz8QqL4JH5TP7Gedo-PYCe0DYKQGZXTV8k8Qu00WDs8UEixTeyD8UhevMk2S4qVcSUk-1Anl5YHwq')"></div>
+    <div class="hero-bg-slide" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuA69TJDuD-BX-52tyoYanY1FvV6jLZn10EqzAXC9_0q-KCuH-aRpM_HrGHbnmT5NRykr8JUV0XQ4pYd6j9HnXb-f0GasTwaEQ3ekrP4PgV6hdbbfk00rQORAwnBN0R_LQrnGqRlPYSfsWLMwRapL_yWcVKutROLEaAPjVGw1tSxyAiFVpv906ncbflJkgn5jxr51WgT-1sghvvJS8LwvijEItCyEWT5KK4PLSjXQx6bo_P8t8c31DM5zKr_XoYmOQN9gd6reooWuYwS')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-label">Redefining Modern Living</span>
+    <h1>The Architecture<br/>of Permanence.</h1>
+    <p class="hero-sub">Curated residential masterpieces that blend sustainable innovation with timeless aesthetic precision. Discover your legacy address.</p>
+    <div class="search-bar">
+      <div class="search-field">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#4a58a8" stroke="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <input type="text" placeholder="Desired Location"/>
+      </div>
+      <div class="search-field">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4a58a8" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <select><option>Property Type</option><option>Penthouse</option><option>Garden Villa</option><option>Sky Villa</option></select>
+      </div>
+      <button class="search-btn">Search</button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card"><span class="stat-num">240+</span><span class="stat-label">Residences Delivered</span></div>
+    <div class="stat-card"><span class="stat-num">&#8377;6K Cr</span><span class="stat-label">Portfolio Value</span></div>
+    <div class="stat-card"><span class="stat-num">40+</span><span class="stat-label">Years of Legacy</span></div>
+  </div>
+</section>
+
+<div class="ribbon">
+  <div class="ribbon-inner">
+    <div class="ribbon-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>LEED Platinum Certified</span></div>
+    <div class="ribbon-item"><svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg><span>Infinity Cloud Pools</span></div>
+    <div class="ribbon-item"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>24/7 Concierge Excellence</span></div>
+    <div class="ribbon-item"><svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 19.5"/><path d="M19 8C8 14 7 17 6 22"/><path d="M21 8c-3.3 2.2-4.5 5-5.5 9"/></svg><span>Private Vertical Forests</span></div>
+    <div class="ribbon-item"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><span>Signature Bespoke Design</span></div>
+  </div>
+</div>
+
+<!-- ══ PROJECT SLIDER ══ -->
+<section class="projects-slider-section">
+  <div class="slider-header">
+    <div>
+      <span class="slider-eyebrow">Our Portfolio</span>
+      <h2 class="slider-h2">Explore Our Projects.</h2>
+    </div>
+    <div class="slider-tabs">
+      <button class="stab active" data-cat="ongoing">Ongoing</button>
+      <button class="stab" data-cat="completed">Completed</button>
+      <button class="stab" data-cat="upcoming">Upcoming</button>
+    </div>
+  </div>
+  <div class="slider-viewport">
+    <div class="slider-track" id="sliderTrack"></div>
+  </div>
+  <div class="slider-controls">
+    <button class="slider-arrow" id="sliderPrev"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="slider-arrow" id="sliderNext"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <div class="sdots" id="sliderDots"></div>
+    <span class="slider-count" id="sliderCount"></span>
+  </div>
+</section>
+<!-- ══ END PROJECT SLIDER ══ -->
+
+<section class="properties">
+  <div class="section-header reveal">
+    <div><span class="eyebrow">Curated Collection</span><h2 class="section-h2">Iconic Residences.</h2></div>
+    <a href="p1.html" class="explore-link">Explore Full Portfolio<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+  <div class="prop-grid">
+    <div class="prop-main reveal">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVazGELfxvNiWVwUHBojkrjI9ZellHGH5RKT-lfAfZccI6BeqQNJhiWLP5k0N0NRCuEhiYByqAoaimG-fBw1rQgb8bQxWNlxJlXfkS5hG3kUASshycS6QNW8iV4yubgv0MTUptIkgZd0PAciqHk6NePNmiYJZSM3PQKw7411Zynxx7zSg8oEQsTchG8ZAsrLdwz8QqL4JH5TP7Gedo-PYCe0DYKQGZXTV8k8Qu00WDs8UEixTeyD8UhevMk2S4qVcSUk-1Anl5YHwq" alt="The Meridian Heights"/>
+      <div class="prop-main-overlay"></div>
+      <div class="prop-main-content"><span class="badge">New Launch</span><h3>The Meridian Heights</h3><p>Sky-Villas with 360&#176; Panoramic Urban Views</p></div>
+    </div>
+    <div class="prop-side">
+      <div class="prop-sm reveal" style="transition-delay:.15s">
+        <div class="prop-sm-img"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBflz_ggqq5OPR3L3xSbEAZT1qEQ9bAdlpKaprK3dNeH4XZOJH1DC86cRVDK96HQ9Qp6Oz8lsw6DWwUOfkA9j2sYr4XCOcMB9S4c7bjWXd_5jHT6BBAb1MkHiriQt9RMJbI7j0mdU00AS_kyT7cJzmsaRBaFFNgpgcgEwaHNVHw1SaDmtiwo1bh67U6gYMBkAbSVq5ebvkqZBGmNfloVk6C5E7Q171ESxAt6L1JVAUhhqbQBsedD7I93yCdhcWbDZOKQwfGR0XhNut_" alt="Zenith Terrace"/></div>
+        <div class="prop-sm-info"><div class="prop-sm-title">Zenith Terrace</div><div class="prop-sm-price">Starting from &#8377;4.2 Cr &middot; Gachibowli, Hyderabad</div></div>
+      </div>
+      <div class="prop-sm reveal" style="transition-delay:.28s">
+        <div class="prop-sm-img"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl9LxD67EZ1qjEFo0IezHFnXjH11vugaG5crTGQTr_C9L2Seq8QsYTsVgaC0KJnp-Yjmhuw3drjTsrhYelKAj-bbZL8rbnIgq1a3VgBkb2UFohBB0OZay9SKKwsyQmpsYoFdoipv8JDm68mcPDRBqhu1CYQ3HGfSLKCNvlzEb9P2YyPX9VLv8rkTrl8ovYR4ftzprEBr94sYWg18dkc9cXgiRqOQrg3rAob9k8Cg0qmwuvdD3cU9MS7ZeUpJqph3tkH90ckYLol3yH" alt="Oakwood Estate"/></div>
+        <div class="prop-sm-info"><div class="prop-sm-title">Oakwood Estate</div><div class="prop-sm-price">Starting from &#8377;8.5 Cr &middot; Sarjapur, Bangalore</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="legacy">
+  <div class="legacy-inner">
+    <div class="legacy-img reveal">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA69TJDuD-BX-52tyoYanY1FvV6jLZn10EqzAXC9_0q-KCuH-aRpM_HrGHbnmT5NRykr8JUV0XQ4pYd6j9HnXb-f0GasTwaEQ3ekrP4PgV6hdbbfk00rQORAwnBN0R_LQrnGqRlPYSfsWLMwRapL_yWcVKutROLEaAPjVGw1tSxyAiFVpv906ncbflJkgn5jxr51WgT-1sghvvJS8LwvijEItCyEWT5KK4PLSjXQx6bo_P8t8c31DM5zKr_XoYmOQN9gd6reooWuYwS" alt="Architect at work"/>
+      <div class="legacy-badge"><span class="legacy-badge-num">40+</span><span class="legacy-badge-lbl">Years of Legacy</span></div>
+    </div>
+    <div class="legacy-text reveal" style="transition-delay:.2s">
+      <span class="eyebrow">Our Heritage</span>
+      <h2 class="section-h2">Built on the Foundations of Trust.</h2>
+      <blockquote class="quote">"Owning a Janapriya Upscale home is more than an investment; it's the realization of an architectural dream. The attention to detail and the seamless indoor-outdoor flow is unparalleled."</blockquote>
+      <div class="author">
+        <div class="author-avatar"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-Qlszsuc1caziw2o64znw7lB74Y-iljpWFK1eVCQEAYQHvZHw5ruFM9rd2QZrFTGJquvtq-04SEQxsDeG_RKf-ex1-VW4p8nF6RnvFc_-DRpqlU_01wFBn1lAaz8blVSb1PSiYkdIKxBq09P8W_m7a4k7zUVPvUlr9nBKb7f3Bj6PeZatXgUN-vZV_fpOmC9Y9dusleOz7xV45HuDV-sWTdo5pAtVe0DERXt2SdoxUAOhmqg64thlNKF_OdPAG4qpSIt2qbmwUTsk" alt="Mr. Ravinder Reddy"/></div>
+        <div><div class="author-name">Mr. Ravinder Reddy</div><div class="author-role">Founder &amp; Chairman, Janapriya</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-inner reveal">
+    <div class="cta-blob cta-blob-1"></div>
+    <div class="cta-blob cta-blob-2"></div>
+    <h2>Witness the Craftsmanship.</h2>
+    <p class="cta-sub">Schedule a private tour of our signature suites and experience the standard of luxury firsthand.</p>
+    <div class="cta-btns"><button class="btn-white">Book a Visit</button><button class="btn-outline">View Catalog</button></div>
+  </div>
+</section>
+<div id="popup" class="popup">
+  <p>🔥 Limited Offer! Book your dream flat today.</p>
+</div>
+
+<script>
+  window.onload = function() {
+    const popup = document.getElementById("popup");
+
+    // Show popup
+    setTimeout(() => {
+      popup.classList.add("show");
+    }, 1000); // show after 1 sec
+
+    // Hide popup after 10 seconds
+    setTimeout(() => {
+      popup.classList.remove("show");
+    }, 11000); // 1s delay + 10s visible
+  };
+</script>
+<footer>
+  <div class="footer-logo">Janapriya Upscale</div>
+  <ul class="footer-links">
+    <li><a href="#">Privacy Policy</a></li>
+    <li><a href="#">Terms of Service</a></li>
+    <li><a href="#">Press Kit</a></li>
+    <li><a href="#">Investor Relations</a></li>
+  </ul>
+  <div class="footer-line"></div>
+  <p class="footer-copy">&#169; 2025 Janapriya Upscale. Architectural Monograph Series.</p>
+</footer>
+
+<script>
+/* NAV */
+var toggle=document.getElementById('navToggle'),menu=document.getElementById('mobileMenu'),bars=toggle.querySelectorAll('span');
+toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');bars[0].style.transform=o?'translateY(7px) rotate(45deg)':'';bars[1].style.opacity=o?'0':'1';bars[2].style.transform=o?'translateY(-7px) rotate(-45deg)':'';});
+var reveals=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.12});
+reveals.forEach(function(el){obs.observe(el);});
+var nb=document.getElementById('navbar');
+window.addEventListener('scroll',function(){nb.style.boxShadow=window.scrollY>10?'0 4px 24px rgba(16,9,78,0.08)':'none';});
+
+/* ── HERO BACKGROUND CROSSFADE SLIDESHOW ── */
+(function(){
+  var slides=document.querySelectorAll('.hero-bg-slide');
+  var cur=0;
+  function advance(){
+    slides[cur].classList.remove('active');
+    cur=(cur+1)%slides.length;
+    slides[cur].classList.add('active');
+  }
+  setInterval(advance,5000);
+})();
+
+/* PROJECT SLIDER */
+var PROJECTS={
+  ongoing:[
+    {name:'Zenith Terrace',loc:'Gachibowli, Hyderabad',price:'&#8377;85 L \u2013 2.8 Cr',note:'onwards',pct:68,img:'https://lh3.googleusercontent.com/aida-public/AB6AXuBflz_ggqq5OPR3L3xSbEAZT1qEQ9bAdlpKaprK3dNeH4XZOJH1DC86cRVDK96HQ9Qp6Oz8lsw6DWwUOfkA9j2sYr4XCOcMB9S4c7bjWXd_5jHT6BBAb1MkHiriQt9RMJbI7j0mdU00AS_kyT7cJzmsaRBaFFNgpgcgEwaHNVHw1SaDmtiwo1bh67U6gYMBkAbSVq5ebvkqZBGmNfloVk6C5E7Q171ESxAt6L1JVAUhhqbQBsedD7I93yCdhcWbDZOKQwfGR0XhNut_'},
+    {name:'Oakwood Estate',loc:'Sarjapur, Bangalore',price:'&#8377;1.15 Cr \u2013 3.2 Cr',note:'onwards',pct:42,img:'https://lh3.googleusercontent.com/aida-public/AB6AXuAl9LxD67EZ1qjEFo0IezHFnXjH11vugaG5crTGQTr_C9L2Seq8QsYTsVgaC0KJnp-Yjmhuw3drjTsrhYelKAj-bbZL8rbnIgq1a3VgBkb2UFohBB0OZay9SKKwsyQmpsYoFdoipv8JDm68mcPDRBqhu1CYQ3HGfSLKCNvlzEb9P2YyPX9VLv8rkTrl8ovYR4ftzprEBr94sYWg18dkc9cXgiRqOQrg3rAob9k8Cg0qmwuvdD3cU9MS7ZeUpJqph3tkH90ckYLol3yH'},
+    {name:'The Meridian Heights',loc:'Jubilee Hills, Hyderabad',price:'&#8377;1.8 Cr \u2013 3.5 Cr',note:'onwards',pct:25,img:'https://lh3.googleusercontent.com/aida-public/AB6AXuAVazGELfxvNiWVwUHBojkrjI9ZellHGH5RKT-lfAfZccI6BeqQNJhiWLP5k0N0NRCuEhiYByqAoaimG-fBw1rQgb8bQxWNlxJlXfkS5hG3kUASshycS6QNW8iV4yubgv0MTUptIkgZd0PAciqHk6NePNmiYJZSM3PQKw7411Zynxx7zSg8oEQsTchG8ZAsrLdwz8QqL4JH5TP7Gedo-PYCe0DYKQGZXTV8k8Qu00WDs8UEixTeyD8UhevMk2S4qVcSUk-1Anl5YHwq'}
+  ],
+  completed:[
+    {name:'Kokapet Signature',loc:'Kokapet, Hyderabad',price:'Fully Sold Out',note:'100% Delivered',pct:null,img:'https://lh3.googleusercontent.com/aida-public/AB6AXuA69TJDuD-BX-52tyoYanY1FvV6jLZn10EqzAXC9_0q-KCuH-aRpM_HrGHbnmT5NRykr8JUV0XQ4pYd6j9HnXb-f0GasTwaEQ3ekrP4PgV6hdbbfk00rQORAwnBN0R_LQrnGqRlPYSfsWLMwRapL_yWcVKutROLEaAPjVGw1tSxyAiFVpv906ncbflJkgn5jxr51WgT-1sghvvJS8LwvijEItCyEWT5KK4PLSjXQx6bo_P8t8c31DM5zKr_XoYmOQN9gd6reooWuYwS'},
+    {name:'Electronic City Residences',loc:'Electronic City, Bangalore',price:'Fully Sold Out',note:'Award Winner 2020',pct:null,img:'https://lh3.googleusercontent.com/aida-public/AB6AXuBflz_ggqq5OPR3L3xSbEAZT1qEQ9bAdlpKaprK3dNeH4XZOJH1DC86cRVDK96HQ9Qp6Oz8lsw6DWwUOfkA9j2sYr4XCOcMB9S4c7bjWXd_5jHT6BBAb1MkHiriQt9RMJbI7j0mdU00AS_kyT7cJzmsaRBaFFNgpgcgEwaHNVHw1SaDmtiwo1bh67U6gYMBkAbSVq5ebvkqZBGmNfloVk6C5E7Q171ESxAt6L1JVAUhhqbQBsedD7I93yCdhcWbDZOKQwfGR0XhNut_'},
+    {name:'Banjara Hills Crown',loc:'Banjara Hills, Hyderabad',price:'Fully Sold Out',note:'780 Homes Delivered',pct:null,img:'https://lh3.googleusercontent.com/aida-public/AB6AXuAl9LxD67EZ1qjEFo0IezHFnXjH11vugaG5crTGQTr_C9L2Seq8QsYTsVgaC0KJnp-Yjmhuw3drjTsrhYelKAj-bbZL8rbnIgq1a3VgBkb2UFohBB0OZay9SKKwsyQmpsYoFdoipv8JDm68mcPDRBqhu1CYQ3HGfSLKCNvlzEb9P2YyPX9VLv8rkTrl8ovYR4ftzprEBr94sYWg18dkc9cXgiRqOQrg3rAob9k8Cg0qmwuvdD3cU9MS7ZeUpJqph3tkH90ckYLol3yH'}
+  ],
+  upcoming:[
+    {name:'Whitefield Pinnacle',loc:'Whitefield, Bangalore',price:'&#8377;3.2 Cr \u2013 5.5 Cr',note:'Pre-launch',pct:null,img:'https://lh3.googleusercontent.com/aida-public/AB6AXuAVazGELfxvNiWVwUHBojkrjI9ZellHGH5RKT-lfAfZccI6BeqQNJhiWLP5k0N0NRCuEhiYByqAoaimG-fBw1rQgb8bQxWNlxJlXfkS5hG3kUASshycS6QNW8iV4yubgv0MTUptIkgZd0PAciqHk6NePNmiYJZSM3PQKw7411Zynxx7zSg8oEQsTchG8ZAsrLdwz8QqL4JH5TP7Gedo-PYCe0DYKQGZXTV8k8Qu00WDs8UEixTeyD8UhevMk2S4qVcSUk-1Anl5YHwq'},
+    {name:'Manikonda Skyline',loc:'Manikonda, Hyderabad',price:'&#8377;78 L \u2013 1.9 Cr',note:'Coming Soon',pct:null,img:'https://lh3.googleusercontent.com/aida-public/AB6AXuA69TJDuD-BX-52tyoYanY1FvV6jLZn10EqzAXC9_0q-KCuH-aRpM_HrGHbnmT5NRykr8JUV0XQ4pYd6j9HnXb-f0GasTwaEQ3ekrP4PgV6hdbbfk00rQORAwnBN0R_LQrnGqRlPYSfsWLMwRapL_yWcVKutROLEaAPjVGw1tSxyAiFVpv906ncbflJkgn5jxr51WgT-1sghvvJS8LwvijEItCyEWT5KK4PLSjXQx6bo_P8t8c31DM5zKr_XoYmOQN9gd6reooWuYwS'},
+    {name:'Kondapur Horizon',loc:'Kondapur, Hyderabad',price:'&#8377;55 L \u2013 2.4 Cr',note:'Launching Q3 2025',pct:null,img:'https://lh3.googleusercontent.com/aida-public/AB6AXuBflz_ggqq5OPR3L3xSbEAZT1qEQ9bAdlpKaprK3dNeH4XZOJH1DC86cRVDK96HQ9Qp6Oz8lsw6DWwUOfkA9j2sYr4XCOcMB9S4c7bjWXd_5jHT6BBAb1MkHiriQt9RMJbI7j0mdU00AS_kyT7cJzmsaRBaFFNgpgcgEwaHNVHw1SaDmtiwo1bh67U6gYMBkAbSVq5ebvkqZBGmNfloVk6C5E7Q171ESxAt6L1JVAUhhqbQBsedD7I93yCdhcWbDZOKQwfGR0XhNut_'}
+  ]
+};
+
+var currentCat='ongoing',currentIdx=0,autoTimer=null;
+var track=document.getElementById('sliderTrack');
+var dotsWrap=document.getElementById('sliderDots');
+var countEl=document.getElementById('sliderCount');
+var prevBtn=document.getElementById('sliderPrev');
+var nextBtn=document.getElementById('sliderNext');
+
+function buildCards(cat){
+  track.innerHTML='';
+  PROJECTS[cat].forEach(function(p){
+    var prog='';
+    if(p.pct!==null){
+      prog='<div class="proj-progress"><div class="proj-progress-label"><span>Construction</span><span>'+p.pct+'%</span></div>'
+          +'<div class="proj-progress-bar"><div class="proj-progress-fill" data-w="'+p.pct+'%" style="width:0%"></div></div></div>';
+    }
+    var el=document.createElement('div');
+    el.className='proj-slide-card';
+    el.innerHTML='<img class="proj-slide-img" src="'+p.img+'" alt="'+p.name+'" loading="lazy"/>'
+      +'<div class="proj-slide-overlay"></div>'
+      +'<div class="proj-slide-content">'
+      +'<span class="proj-status-badge badge-'+cat+'">'+cat.charAt(0).toUpperCase()+cat.slice(1)+'</span>'
+      +'<div class="proj-slide-name">'+p.name+'</div>'
+      +'<div class="proj-slide-loc"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>'+p.loc+'</div>'
+      +'<div class="proj-slide-price">'+p.price+'<span>'+p.note+'</span></div>'
+      +prog+'</div>';
+    track.appendChild(el);
+  });
+  setTimeout(function(){
+    track.querySelectorAll('.proj-progress-fill').forEach(function(f){f.style.width=f.getAttribute('data-w');});
+  },120);
+}
+
+function buildDots(cat){
+  dotsWrap.innerHTML='';
+  PROJECTS[cat].forEach(function(_,i){
+    var d=document.createElement('div');
+    d.className='sdot'+(i===0?' active':'');
+    d.addEventListener('click',(function(idx){return function(){goTo(idx);resetAuto();};})(i));
+    dotsWrap.appendChild(d);
+  });
+}
+
+function getCardW(){
+  var c=track.querySelector('.proj-slide-card');
+  return c?c.getBoundingClientRect().width+24:0;
+}
+
+function goTo(idx){
+  var list=PROJECTS[currentCat];
+  idx=Math.max(0,Math.min(list.length-1,idx));
+  currentIdx=idx;
+  track.style.transform='translateX(-'+(getCardW()*currentIdx)+'px)';
+  dotsWrap.querySelectorAll('.sdot').forEach(function(d,i){d.classList.toggle('active',i===currentIdx);});
+  countEl.textContent='0'+(currentIdx+1)+' / 0'+list.length;
+  prevBtn.disabled=currentIdx<=0;
+  nextBtn.disabled=currentIdx>=list.length-1;
+}
+
+function switchCat(cat){
+  currentCat=cat;currentIdx=0;
+  track.style.transition='none';
+  track.style.transform='translateX(0)';
+  buildCards(cat);buildDots(cat);
+  setTimeout(function(){track.style.transition='';goTo(0);},10);
+  document.querySelectorAll('.stab').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-cat')===cat);});
+  resetAuto();
+}
+
+function resetAuto(){
+  clearInterval(autoTimer);
+  autoTimer=setInterval(function(){
+    var len=PROJECTS[currentCat].length;
+    goTo(currentIdx+1>=len?0:currentIdx+1);
+  },4000);
+}
+
+prevBtn.addEventListener('click',function(){goTo(currentIdx-1);resetAuto();});
+nextBtn.addEventListener('click',function(){goTo(currentIdx+1);resetAuto();});
+document.querySelectorAll('.stab').forEach(function(b){
+  b.addEventListener('click',function(){switchCat(b.getAttribute('data-cat'));});
+});
+
+var tx=0;
+track.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+track.addEventListener('touchend',function(e){
+  var d=tx-e.changedTouches[0].clientX;
+  if(Math.abs(d)>40){goTo(d>0?currentIdx+1:currentIdx-1);resetAuto();}
+});
+
+switchCat('ongoing');
+</script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Us | Janapriya Upscale</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --navy:#10094e;--navy-mid:#262262;--navy-light:#4a58a8;
+  --ivory:#fcf8ff;--surface:#f6f2ff;--surface-mid:#e9e5ff;--surface-high:#e3dfff;
+  --red:#e11d48;--dark-red:#370006;
+  --r4:4px;--r8:8px;--r12:12px;--r16:16px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:var(--navy);line-height:1.6;overflow-x:hidden}
+
+/* ── SHARED NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(252,248,255,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:.5px solid rgba(16,9,78,.08)}
+.nav-logo{font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.04em;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy-light);text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent;transition:color .3s var(--ease),border-color .3s var(--ease)}
+.nav-links a.active,.nav-links a:hover{color:var(--navy);border-bottom-color:var(--navy)}
+.nav-cta{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;cursor:pointer;padding:12px 28px;border-radius:var(--r8);transition:all .3s var(--ease)}
+.nav-cta:hover{background:var(--navy-mid);transform:scale(1.03)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s var(--ease)}
+.mobile-menu{display:none;flex-direction:column;background:#fff;border-bottom:.5px solid rgba(16,9,78,.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-light);text-decoration:none;padding:16px 24px;border-bottom:.5px solid rgba(16,9,78,.06)}
+.mobile-menu a:hover{color:var(--navy)}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:72vh;display:flex;align-items:center;padding:140px 64px 80px;background:var(--ivory);overflow:hidden}
+.hero-img{position:absolute;right:0;top:0;width:50%;height:100%;object-fit:cover;opacity:.15}
+@media(min-width:900px){.hero-img{opacity:1;mix-blend-mode:normal}}
+.hero-content{position:relative;z-index:2;max-width:640px}
+.hero-eyebrow{font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--navy-light);margin-bottom:24px;display:block}
+.hero h1{font-family:'Manrope',sans-serif;font-size:clamp(52px,7vw,100px);font-weight:800;color:var(--navy);line-height:1;letter-spacing:-.05em;margin-bottom:32px}
+.hero-rule{width:128px;height:4px;background:var(--dark-red);border:none}
+
+/* ── SECTIONS ── */
+.section-pad{padding:80px 64px}
+.section-alt{background:var(--surface)}
+.max-w{max-width:1400px;margin:0 auto}
+.eyebrow{display:block;font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--navy-light);margin-bottom:16px}
+.section-h2{font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:800;color:var(--navy);letter-spacing:-.03em;line-height:1.1;margin-bottom:24px}
+.lead{font-size:17px;color:#474650;line-height:1.75;margin-bottom:20px}
+
+/* Journey grid */
+.journey-grid{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center}
+.stat-row{display:flex;flex-direction:column;gap:28px;margin-top:40px}
+.stat-item{display:flex;align-items:baseline;gap:16px}
+.stat-big{font-family:'Manrope',sans-serif;font-size:56px;font-weight:800;color:var(--navy);letter-spacing:-.04em;line-height:1}
+.stat-lbl{font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy-light)}
+.img-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.img-duo-a{border-radius:var(--r16);overflow:hidden;aspect-ratio:3/4;transform:translateY(40px)}
+.img-duo-b{border-radius:var(--r16);overflow:hidden;aspect-ratio:3/4}
+.img-duo img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Quote */
+.quote-section{text-align:center;padding:80px 64px}
+.big-quote{font-family:'Manrope',sans-serif;font-size:clamp(18px,2.5vw,30px);font-weight:400;font-style:italic;color:var(--navy);line-height:1.6;max-width:800px;margin:0 auto}
+.quote-icon{font-size:48px;color:var(--dark-red);margin-bottom:24px;line-height:1;display:block}
+
+/* Leadership */
+.leader-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.leader-card{position:relative}
+.leader-card:last-child{margin-top:80px}
+.leader-img{aspect-ratio:4/5;border-radius:var(--r16);overflow:hidden;margin-bottom:28px;position:relative}
+.leader-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1);transition:filter .7s}
+.leader-card:hover .leader-img img{filter:grayscale(0)}
+.leader-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(16,9,78,.5),transparent);opacity:0;transition:opacity .3s}
+.leader-card:hover .leader-img-overlay{opacity:1}
+.leader-name{font-family:'Manrope',sans-serif;font-size:26px;font-weight:800;color:var(--navy);margin-bottom:4px}
+.leader-title{font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy-light);margin-bottom:20px;display:block}
+.leader-bio{font-size:14px;color:#474650;line-height:1.75}
+.leader-bio p+p{margin-top:12px}
+
+/* Values bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,280px);gap:16px}
+.bento-cell{border-radius:var(--r16);padding:40px;display:flex;flex-direction:column;justify-content:flex-end}
+.bento-c1{background:var(--navy);grid-column:span 2;grid-row:span 1}
+.bento-c2{background:#fff;grid-column:span 1;grid-row:span 2;border-left:4px solid var(--dark-red);justify-content:flex-start}
+.bento-c3{background:var(--navy-light);grid-column:span 1;grid-row:span 1;align-items:center;text-align:center}
+.bento-c4{background:var(--surface-high);grid-column:span 2;grid-row:span 1;position:relative;overflow:hidden}
+.bento-c5{background:var(--dark-red);grid-column:span 1;grid-row:span 1;justify-content:center}
+.bento-icon{font-size:32px;margin-bottom:20px;color:#fff;opacity:.8;font-style:normal}
+.bento-title{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;line-height:1.2}
+.bento-text{font-size:13px;line-height:1.65;margin-top:12px}
+.t-white{color:#fff}.t-navy{color:var(--navy)}.t-navy-light{color:var(--navy-light)}
+.bento-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.15;transition:opacity .5s}
+.bento-c4:hover .bento-bg-img{opacity:.3}
+.bento-c4-content{position:relative;z-index:1}
+
+/* SHARED FOOTER */
+footer{background:var(--navy);padding:48px 64px 32px;text-align:center}
+.footer-logo{font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.04em;color:#fff;margin-bottom:28px}
+.footer-links{display:flex;gap:36px;justify-content:center;margin-bottom:32px;list-style:none;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.8)}
+.footer-line{width:64px;height:.5px;background:rgba(255,255,255,.1);margin:0 auto 24px}
+.footer-copy{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  nav{padding:0 24px}.nav-links,.nav-cta{display:none}.nav-toggle{display:flex}
+  .hero{padding:120px 24px 60px}.hero-img{display:none}
+  .journey-grid,.leader-grid,.img-duo{grid-template-columns:1fr}
+  .img-duo-a{transform:none}
+  .leader-card:last-child{margin-top:0}
+  .bento{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .bento-c1,.bento-c2,.bento-c3,.bento-c4,.bento-c5{grid-column:span 1;grid-row:span 1;height:220px}
+  .section-pad{padding:60px 24px}
+  .quote-section{padding:60px 24px}
+  footer{padding:40px 24px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-logo" href="index1.html"><svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="56" height="56" rx="6" fill="#10094e"/><rect x="32" y="32" width="56" height="56" rx="6" fill="none" stroke="#e11d48" stroke-width="7"/><rect x="42" y="42" width="28" height="28" rx="4" fill="#e11d48"/><rect x="52" y="52" width="10" height="10" rx="2" fill="#10094e"/></svg>Janapriya Upscale</a>
+  <ul class="nav-links">
+    <li><a href="index1.html">Properties</a></li>
+    <li><a href="legacy.html">Legacy</a></li>
+    <li><a href="p1.html">Projects</a></li>
+    <li><a href="aboutus.html"class="active">About Us</a></li>
+    <li><a href="CONTACT.HTML">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Book a Visit</button>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index1.html">Properties</a><a href="legacy.html">Legacy</a>
+  <a href="p1.html">Projects</a><a href="aboutus.html">About Us</a><a href="CONTACT.HTML">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl4sWzfsR45qfJK_qzb1ciJ_5vs6ypzvw3j4L2YlyoVLO1xadta71Ur5_TEK48NDgUkKSH8vEn0zfPPXS1hr9GSVXlXw3MEk9xgyE_1LAr459xOhUtCi1Kfr5SCxpV2BhHLTzIrU4TN27YIxl6YRPX0oEeP0xEk5-trbDcdwyS7z-PgQhNJibeR_uP-hp62yIo6k2ac1D0XSt5cInjxYUpzoAB5_wbc5wPUG2Xl3Hb_whNPbSB7PZJ_p2fzcrLH3VkTCMUhL9jPkn2" alt="Architecture facade"q=80" alt="Luxury Architecture facade"/>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Established 1985</span>
+    <h1>The Janapriya<br/>Legacy</h1>
+    <hr class="hero-rule"/>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section class="section-pad section-alt">
+  <div class="max-w">
+    <div class="journey-grid">
+      <div class="reveal">
+        <h2 class="section-h2">Defining the Skyline of Hyderabad &amp; Bangalore</h2>
+        <p class="lead">Since our inception in 1985, Janapriya has been more than just a real estate developer. We have been the architects of dreams for thousands of families.</p>
+        <div class="stat-row">
+          <div class="stat-item"><span class="stat-big">70K+</span><span class="stat-lbl">Homes Delivered</span></div>
+          <div class="stat-item"><span class="stat-big">40+</span><span class="stat-lbl">Years of Excellence</span></div>
+        </div>
+      </div>
+      <div class="img-duo reveal" style="transition-delay:.2s">
+        <div class="img-duo-a"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrr0OniQbrE2usB4aGjTaxvMMBQ29lPgpMHHuHI7RnlU3j5FuX8qH-VPqosEf_U81sfBXLEdfu46mPGadeCMjTrJwWR6E54smoYbXdEh0gTHREQmmrEbzQAYOSWHJ08Z6RBIGT9eRUoobbtM4un2mfOc67-7aLH1s9Ip51aWhy1dEm5KF5I6ZbjAjnxkVZ4RAl0I58o7R3RrUoUa-Rkm6w3gxhBsiU_QUPsFv4DdrFVfjO2DdE5Pzpnvsj3PhzG1uy_yI-5Hc9dwdN" alt="Complex"/></div>
+        <div class="img-duo-b"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLXLQyXHJFAY_JJ5jguBNYvEzfF4_aZAFlG4iAfsPh6zd9aq_JHo38WQCJDzxfID4p9eNTm8JpxXpVCfn-VU5wo7LOypXXP0mf2RyVo84iON5jBol446XY0IYvetQPCKsruJTuCG0AYA3W9BMR_4Y4qRVGy-oXe_0qLHQ6HvqeVOiXyQPedJe7a03IFAMpjnM_0jkcGsFZ7MQreu211jau5KMfjnYuoX2FIEV_nshLxyE-siXLcNdnR3tWVrNag8s4n4DwBLR9mOX_" alt="Penthouse"/></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section reveal">
+  <span class="quote-icon">"</span>
+  <p class="big-quote">Our mission is to build for every budget while maintaining an uncompromising standard of quality. We don't just build houses; we build communities where memories are forged.</p>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="section-pad" style="background:#fff">
+  <div class="max-w">
+    <div class="reveal" style="margin-bottom:64px">
+      <span class="eyebrow">Leadership</span>
+      <h2 class="section-h2">The Visionaries</h2>
+    </div>
+    <div class="leader-grid">
+      <div class="leader-card reveal">
+        <div class="leader-img">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMxxKhTTd8Q7-8QJMiV6LyOFByNhPvRpeJw1xMh_McK2WXOBXCPJnUH0ecfDlDJGV7cc7ldmpgeoxEBpsUQui5_uPNUYcgOHxVT6sXDAgdLzx4FWTZcAm_kIRvPT4hultQ_mrsbUEwJrJpaVbrt4ZUvVeVVGOSsqtkzUdUc2Typv1OYBa1C5DVVMb_X32u6txyRmx8y2AjqDyiNL1rc9mabMrZMzooWXnb2f7pHD5af6izPBaO2RxLs9HhMDv07a-sU-SFGRiFlgH8" alt="Mr. Ravinder Reddy"/>
+          <div class="leader-img-overlay"></div>
+        </div>
+        <div class="leader-name">Mr. Ravinder Reddy</div>
+        <span class="leader-title">Founder &amp; Chairman</span>
+        <div class="leader-bio">
+          <p>An engineer by training and a visionary by nature, Mr. Ravinder Reddy established Janapriya with a singular purpose: making home ownership an accessible reality for everyone without sacrificing structural integrity.</p>
+          <p>His leadership has steered the company through nearly four decades of market evolution, always anchored by his commitment to value-based engineering.</p>
+        </div>
+      </div>
+      <div class="leader-card reveal" style="transition-delay:.2s">
+        <div class="leader-img">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSMcSbkQyU02plH1QDPKsyJIyxWxoVilBRJke_oPAUX45UWRmriVm-ffoQ7FHP3-JT6rxK2h86wjZ6QtzIoh-pTvWSU2wD_fCC2cta0y9lMyK9ZTX0h6e8DiXcJRug666kFKXsYI_jZPc7PiJPU2nFNgcEe-UV31d8cBCCshJk_rAuRD4OhdZkALFRgJaf7_ABsGm7dSF89-YiT1cmSoSvfclFaBRwvMrNy5jhUFCw5TPytg6IZK6sAcWdch8J6auWdCXNMDeh4peD" alt="Mr. Kranti Kiran Reddy"/>
+          <div class="leader-img-overlay"></div>
+        </div>
+        <div class="leader-name">Mr. Kranti Kiran Reddy</div>
+        <span class="leader-title">Managing Director</span>
+        <div class="leader-bio">
+          <p>Bringing a global perspective to Janapriya, Kranti Kiran Reddy holds a Civil Engineering degree from North Carolina State University, USA.</p>
+          <p>His focus on cutting-edge construction technology and optimizing speed through industrial-scale processes has revolutionized operational efficiency, ensuring timely delivery of premium upscale projects.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES BENTO -->
+<section class="section-pad section-alt">
+  <div class="max-w">
+    <div class="reveal" style="margin-bottom:48px"><span class="eyebrow">Our Values</span><h2 class="section-h2">What We Stand For</h2></div>
+    <div class="bento reveal" style="transition-delay:.15s">
+      <div class="bento-cell bento-c1">
+        <span class="bento-icon">⬡</span>
+        <div class="bento-title t-white">Uncompromising Quality</div>
+        <div class="bento-text t-white" style="opacity:.75">Every brick, every finish, every detail is held to the highest standard before it reaches your home.</div>
+      </div>
+      <div class="bento-cell bento-c2">
+        <div class="bento-title t-navy" style="margin-bottom:16px">Transparency</div>
+        <div class="bento-text t-navy-light">Every contract, every material, and every timeline is communicated with absolute clarity. We build trust as carefully as we build walls.</div>
+      </div>
+      <div class="bento-cell bento-c3">
+        <div class="bento-title t-white" style="text-transform:uppercase;letter-spacing:.1em;font-size:16px">Innovation<br/>First</div>
+      </div>
+      <div class="bento-cell bento-c4">
+        <img class="bento-bg-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQXcEETaeIN0iO6fPworzMEBGodqywyk4x20km2qcPFTnm22_bDu-CXpxtnXgHFlixr15gKeu5YkIc0gJnbQ9TY3i-0mfQ7ddz5KZGpZxc0Spq7lmxNaSjx4QgZefiOexNuh8iKOxaABhMCwJdGeI_HrMS9dKbyR7vNFg3F3BBqOxfy3jPbRs1o60SfzS2G4hxU9xL7ZZqOsD7ltIWYwu6l6uC68teVZBQpYntFZuMSfeyi7s1U89m1MyyyZPApWVUFszIxjhGvebx" alt="Blueprint"/>
+        <div class="bento-c4-content"><div class="bento-title t-navy">Satisfying Design</div></div>
+      </div>
+      <div class="bento-cell bento-c5">
+        <div class="bento-title t-white">Legacy</div>
+        <div class="bento-text t-white" style="opacity:.75">Building homes that stand for generations.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Janapriya Upscale</div>
+  <ul class="footer-links">
+    <li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li>
+    <li><a href="#">Press Kit</a></li><li><a href="#">Investor Relations</a></li>
+  </ul>
+  <div class="footer-line"></div>
+  <p class="footer-copy">© 2025 Janapriya Upscale. Architectural Monograph Series.</p>
+</footer>
+
+<script>
+var toggle=document.getElementById('navToggle'),menu=document.getElementById('mobileMenu'),bars=toggle.querySelectorAll('span');
+toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');bars[0].style.transform=o?'translateY(7px) rotate(45deg)':'';bars[1].style.opacity=o?'0':'1';bars[2].style.transform=o?'translateY(-7px) rotate(-45deg)':'';});
+var reveals=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.12});
+reveals.forEach(function(el){obs.observe(el);});
+var nb=document.getElementById('navbar');
+window.addEventListener('scroll',function(){nb.style.boxShadow=window.scrollY>10?'0 4px 24px rgba(16,9,78,0.08)':'none';});
+</script>
+</body>
+</html>

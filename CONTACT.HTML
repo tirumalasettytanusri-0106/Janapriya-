@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact | Janapriya Upscale</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --navy:#10094e;--navy-mid:#262262;--navy-light:#4a58a8;
+  --ivory:#fcf8ff;--surface:#f6f2ff;--surface-mid:#e9e5ff;
+  --red:#e11d48;--dark-red:#370006;--red-muted:#ff5661;
+  --outline:#787681;--outline-var:#c8c5d1;
+  --r4:4px;--r8:8px;--r16:16px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:var(--navy);line-height:1.6;overflow-x:hidden}
+
+/* SHARED NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(252,248,255,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:.5px solid rgba(16,9,78,.08)}
+.nav-logo{font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.04em;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy-light);text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent;transition:color .3s var(--ease),border-color .3s var(--ease)}
+.nav-links a.active,.nav-links a:hover{color:var(--navy);border-bottom-color:var(--navy)}
+.nav-cta{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;cursor:pointer;padding:12px 28px;border-radius:var(--r8);transition:all .3s var(--ease)}
+.nav-cta:hover{background:var(--navy-mid);transform:scale(1.03)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s var(--ease)}
+.mobile-menu{display:none;flex-direction:column;background:#fff;border-bottom:.5px solid rgba(16,9,78,.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-light);text-decoration:none;padding:16px 24px;border-bottom:.5px solid rgba(16,9,78,.06)}
+
+/* PAGE */
+.page-hero{padding:140px 64px 60px}
+.page-hero-eyebrow{display:block;font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--navy-light);margin-bottom:16px}
+.page-hero h1{font-family:'Manrope',sans-serif;font-size:clamp(44px,6vw,80px);font-weight:800;color:var(--navy);line-height:1;letter-spacing:-.04em}
+.page-hero h1 span{color:var(--red-muted)}
+.max-w{max-width:1400px;margin:0 auto}
+
+/* CONTACT GRID */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:0 64px 96px}
+
+/* FORM */
+.form-title{font-family:'Manrope',sans-serif;font-size:28px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.form-sub{font-size:15px;color:var(--navy-light);margin-bottom:48px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px}
+.form-group{display:flex;flex-direction:column;gap:8px}
+.form-group label{font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--outline)}
+.form-group input,.form-group select,.form-group textarea{background:transparent;border:none;border-bottom:1px solid var(--outline-var);padding:12px 0;font-size:14px;font-weight:500;color:var(--navy);font-family:'Manrope',sans-serif;letter-spacing:-.01em;outline:none;width:100%;transition:border-color .3s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-bottom-color:var(--navy)}
+.form-group textarea{resize:none}
+.form-group-full{margin-bottom:32px}
+.form-actions{display:flex;align-items:center;gap:24px;padding-top:24px;flex-wrap:wrap}
+.btn-submit{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:linear-gradient(135deg,var(--navy),var(--navy-mid));color:#fff;border:none;cursor:pointer;padding:18px 48px;border-radius:var(--r8);transition:all .3s var(--ease);box-shadow:0 8px 24px rgba(16,9,78,.2)}
+.btn-submit:hover{transform:scale(1.04);box-shadow:0 12px 32px rgba(16,9,78,.3)}
+.btn-tour{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy-light);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;transition:color .25s}
+.btn-tour:hover{color:var(--navy)}
+
+/* INFO SIDE */
+.info-card{background:var(--surface);padding:48px;border-radius:var(--r16);margin-bottom:40px}
+.info-card-label{font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--navy-light);display:block;margin-bottom:20px}
+.info-address{font-family:'Manrope',sans-serif;font-size:26px;font-weight:800;color:var(--navy);line-height:1.3;margin-bottom:32px}
+.info-contacts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
+.info-contact-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--outline);display:block;margin-bottom:6px}
+.info-contact-val{font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-decoration:none;transition:color .2s}
+.info-contact-val:hover{color:var(--navy-light)}
+.map-wrap{border-radius:var(--r16);overflow:hidden;height:360px;position:relative}
+.map-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease)}
+.map-wrap:hover img{transform:scale(1.05)}
+.map-pin{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:16px 20px;border-radius:var(--r8);box-shadow:0 8px 32px rgba(16,9,78,.15);display:flex;align-items:center;gap:12px}
+.map-pin-dot{width:12px;height:12px;background:var(--navy);border-radius:50%;flex-shrink:0}
+.map-pin-name{font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;color:var(--navy)}
+.map-pin-sub{font-size:10px;color:var(--outline);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+
+/* RIBBON */
+.ribbon{background:var(--surface);border-top:.5px solid rgba(16,9,78,.08);border-bottom:.5px solid rgba(16,9,78,.08);padding:20px 64px;overflow:hidden;margin-top:40px}
+.ribbon-inner{display:flex;gap:40px;align-items:center;white-space:nowrap}
+.ribbon-pill{display:flex;align-items:center;gap:12px;background:#fff;border:.5px solid rgba(16,9,78,.08);border-radius:99px;padding:10px 24px}
+.ribbon-pill span{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy)}
+.ribbon-dot{width:8px;height:8px;border-radius:50%;background:var(--navy-light);flex-shrink:0}
+
+/* FOOTER */
+footer{background:var(--navy);padding:48px 64px 32px;text-align:center}
+.footer-logo{font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.04em;color:#fff;margin-bottom:28px}
+.footer-links{display:flex;gap:36px;justify-content:center;margin-bottom:32px;list-style:none;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.8)}
+.footer-line{width:64px;height:.5px;background:rgba(255,255,255,.1);margin:0 auto 24px}
+.footer-copy{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  nav{padding:0 24px}.nav-links,.nav-cta{display:none}.nav-toggle{display:flex}
+  .page-hero{padding:110px 24px 40px}
+  .contact-grid{grid-template-columns:1fr;padding:0 24px 64px}
+  .form-row{grid-template-columns:1fr}
+  .ribbon{padding:16px 24px}
+  .ribbon-inner{gap:16px}
+  footer{padding:40px 24px 24px}
+}
+.popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #111;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  z-index: 1000;
+}
+
+.popup.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-logo" href="index1 (2).html"><svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="56" height="56" rx="6" fill="#10094e"/><rect x="32" y="32" width="56" height="56" rx="6" fill="none" stroke="#e11d48" stroke-width="7"/><rect x="42" y="42" width="28" height="28" rx="4" fill="#e11d48"/><rect x="52" y="52" width="10" height="10" rx="2" fill="#10094e"/></svg>Janapriya Upscale</a>
+  <ul class="nav-links">
+    <li><a href="index1.html">Properties</a></li>
+    <li><a href="legacy.html">Legacy</a></li>
+    <li><a href="p1.html">Projects</a></li>
+    <li><a href="aboutus.html">About Us</a></li>
+    <li><a href="CONTACT.HTML" class="active">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Book a Visit</button>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index1.html">Properties</a><a href="legacy.html">Legacy</a>
+  <a href="p1.html">Projects</a><a href="aboutus.html">About Us</a><a href="CONTACT.HTML">Contact</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero reveal">
+  <div class="max-w">
+    <span class="page-hero-eyebrow">Connect with Excellence</span>
+    <h1>Your vision,<br/>our architectural <span>intent.</span></h1>
+  </div>
+</div>
+
+<!-- CONTACT GRID -->
+<div class="contact-grid max-w">
+  <!-- FORM -->
+  <div class="reveal">
+    <div class="form-title">Refined Inquiry</div>
+    <div class="form-sub">Detailed discussions for exclusive commissions.</div>
+    <form>
+      <div class="form-row">
+        <div class="form-group"><label>Name</label><input type="text" placeholder="ALEXANDER VOGUE"/></div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="A.VOGUE@ESTATE.COM"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 99999 00000"/></div>
+        <div class="form-group"><label>Primary Interest</label>
+          <select>
+            <option>RESIDENTIAL PORTFOLIO</option>
+            <option>COMMERCIAL ARCHITECTURE</option>
+            <option>PRIVATE INTERIORS</option>
+            <option>MATERIAL SOURCING</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group form-group-full"><label>Your Vision</label><textarea rows="4" placeholder="DESCRIBE YOUR ARCHITECTURAL ASPIRATIONS..."></textarea></div>
+      <div class="form-actions">
+        <button class="btn-submit" type="submit">Submit Inquiry</button>
+        <button class="btn-tour" type="button">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Book a Private Tour
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- INFO -->
+  <div class="reveal" style="transition-delay:.2s">
+    <div class="info-card">
+      <span class="info-card-label">The Corporate Office</span>
+      <div class="info-address">Janapriya Towers,<br/>Road No. 12, Banjara Hills,<br/>Hyderabad – 500 034</div>
+      <div class="info-contacts">
+        <div>
+          <span class="info-contact-lbl">Direct Inquiries</span>
+          <a class="info-contact-val" href="tel:+914023456789">+91 40 2345 6789</a>
+        </div>
+        <div>
+          <span class="info-contact-lbl">Digital Concierge</span>
+          <a class="info-contact-val" href="/cdn-cgi/l/email-protection#b4c1c4c7d7d5d8d1f4ded5dad5c4c6ddcdd59ad7dbd9"><span class="__cf_email__" data-cfemail="bdc8cdcededcd1d8fdd7dcd3dccdcfd4c4dc93ded2d0">[email&#160;protected]</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpxCm4J-q_uQKcSAgCOHcQlTwJ86DUpN3YElYokm1jB3AxYVhkQRi5TFmCcvW78_0xZVI7ys3iqvHlL96tpXpV5CZScwkzMz9snpMWiRjwao_AAheKyN_3mb2G7YGPNjOAmlRcqIXZM22oVL3zgTqFne-3FWp-rjaY_e2-UFMbsrQmkzjX63cVNpdhM_akieQDzZZAag4e03Efw8sJsbYKVotfXFbEy4qK60pZilpvC0YHWndSW2JoXH4F0zzM0tTO0hlhNh3Zga9A" alt="Map"/>
+      <div class="map-pin">
+        <div class="map-pin-dot"></div>
+        <div><div class="map-pin-name">Janapriya HQ</div><div class="map-pin-sub">Banjara Hills, Hyderabad</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-inner">
+    <div class="ribbon-pill"><div class="ribbon-dot"></div><span>ISO 9001 Certified</span></div>
+    <div class="ribbon-pill"><div class="ribbon-dot"></div><span>Premium Materials</span></div>
+    <div class="ribbon-pill"><div class="ribbon-dot"></div><span>Architectural Excellence</span></div>
+    <div class="ribbon-pill"><div class="ribbon-dot"></div><span>Sustainable Design</span></div>
+  </div>
+</div>
+<div id="popup" class="popup">
+  <p>Janapriya Constructions offers affordable housing with decent layouts, 
+    making it attractive for budget buyers.</p>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  window.onload = function() {
+    const popup = document.getElementById("popup");
+
+    // Show popup
+    setTimeout(() => {
+      popup.classList.add("show");
+    }, 1000); // show after 1 sec
+
+    // Hide popup after 10 seconds
+    setTimeout(() => {
+      popup.classList.remove("show");
+    }, 11000); // 1s delay + 10s visible
+  };
+</script>
+
+<footer>
+  <div class="footer-logo">Janapriya Upscale</div>
+  <ul class="footer-links">
+    <li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li>
+    <li><a href="#">Press Kit</a></li><li><a href="#">Investor Relations</a></li>
+  </ul>
+  <div class="footer-line"></div>
+  <p class="footer-copy">© 2025 Janapriya Upscale. Architectural Monograph Series.</p>
+</footer>
+
+<script>
+var toggle=document.getElementById('navToggle'),menu=document.getElementById('mobileMenu'),bars=toggle.querySelectorAll('span');
+toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');bars[0].style.transform=o?'translateY(7px) rotate(45deg)':'';bars[1].style.opacity=o?'0':'1';bars[2].style.transform=o?'translateY(-7px) rotate(-45deg)':'';});
+var reveals=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.1});
+reveals.forEach(function(el){obs.observe(el);});
+var nb=document.getElementById('navbar');
+window.addEventListener('scroll',function(){nb.style.boxShadow=window.scrollY>10?'0 4px 24px rgba(16,9,78,0.08)':'none';});
+</script>
+</body>
+</html>

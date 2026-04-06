@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Legacy | Janapriya Upscale</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --navy:#10094e;--navy-mid:#262262;--navy-light:#4a58a8;
+  --ivory:#fcf8ff;--surface:#f6f2ff;--surface-mid:#e9e5ff;--surface-high:#e3dfff;
+  --red:#e11d48;--dark-red:#370006;
+  --r4:4px;--r8:8px;--r16:16px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:var(--navy);line-height:1.6;overflow-x:hidden}
+
+/* SHARED NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(252,248,255,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:.5px solid rgba(16,9,78,.08)}
+.nav-logo{font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.04em;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy-light);text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent;transition:color .3s var(--ease),border-color .3s var(--ease)}
+.nav-links a.active,.nav-links a:hover{color:var(--navy);border-bottom-color:var(--navy)}
+.nav-cta{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;cursor:pointer;padding:12px 28px;border-radius:var(--r8);transition:all .3s var(--ease)}
+.nav-cta:hover{background:var(--navy-mid);transform:scale(1.03)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s var(--ease)}
+.mobile-menu{display:none;flex-direction:column;background:#fff;border-bottom:.5px solid rgba(16,9,78,.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-light);text-decoration:none;padding:16px 24px;border-bottom:.5px solid rgba(16,9,78,.06)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--navy);overflow:hidden;padding-top:72px}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;display:block;opacity:.5}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(16,9,78,.9) 0%,rgba(16,9,78,.5) 55%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:80px 64px;max-width:720px}
+.hero-eyebrow{display:block;font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy-light);margin-bottom:24px}
+.hero h1{font-family:'Manrope',sans-serif;font-size:clamp(44px,6vw,88px);font-weight:800;color:#fff;line-height:1;letter-spacing:-.04em;margin-bottom:28px}
+.hero h1 span{color:#bbc3ff}
+.hero-sub{font-size:17px;font-weight:300;color:rgba(255,255,255,.7);max-width:480px;line-height:1.75}
+
+/* SECTIONS */
+.section-pad{padding:96px 64px}
+.section-alt{background:var(--surface)}
+.max-w{max-width:1440px;margin:0 auto}
+.eyebrow{display:block;font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--navy-light);margin-bottom:16px}
+.section-h2{font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,52px);font-weight:800;color:var(--navy);letter-spacing:-.04em;line-height:1.1;margin-bottom:24px}
+.lead{font-size:16px;color:#474650;line-height:1.75;font-style:italic;font-weight:300}
+
+/* Story grid */
+.story-grid{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center}
+.story-img-wrap{position:relative}
+.story-img-wrap img{width:100%;border-radius:var(--r16);display:block;aspect-ratio:4/5;object-fit:cover}
+.story-float{position:absolute;bottom:-32px;right:-32px;background:var(--navy);color:#fff;padding:32px 36px;border-radius:var(--r16);text-align:center;display:none}
+@media(min-width:1024px){.story-float{display:block}}
+.story-float-num{font-family:'Manrope',sans-serif;font-size:52px;font-weight:800;letter-spacing:-.04em;display:block;line-height:1}
+.story-float-lbl{font-size:12px;font-weight:600;color:rgba(255,255,255,.6);margin-top:8px;display:block}
+.story-text{padding-left:8px}
+.story-rule{width:64px;height:4px;background:var(--dark-red);border:none;margin:24px 0}
+.stats-mini{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;padding-top:32px;border-top:.5px solid rgba(16,9,78,.1)}
+.stat-mini-num{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;color:var(--navy)}
+.stat-mini-lbl{font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy-light);margin-top:4px;display:block}
+
+/* TIMELINE BENTO */
+.bento-timeline{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,480px);gap:24px}
+.bt-cell{border-radius:var(--r16);padding:40px;position:relative;overflow:hidden}
+.bt-1{background:#fff;grid-column:span 2}
+.bt-2{background:var(--navy);grid-column:span 1;grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;color:#fff}
+.bt-3{background:var(--dark-red);grid-column:span 1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff}
+.bt-4{background:var(--surface-high);grid-column:span 2;display:flex;align-items:center;gap:40px}
+.bt-bg{position:absolute;top:0;right:0;width:50%;height:100%;object-fit:cover;opacity:.1;transition:opacity .5s}
+.bt-cell:hover .bt-bg{opacity:.25}
+.bt-year{font-family:'Manrope',sans-serif;font-size:64px;font-weight:800;letter-spacing:-.04em;opacity:.2;line-height:1;display:block}
+.bt-title{font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;margin-bottom:12px;line-height:1.2}
+.bt-text{font-size:14px;line-height:1.7;opacity:.8}
+.t-navy{color:var(--navy)}.t-navy-light{color:var(--navy-light)}.t-white{color:#fff}
+.bt-avatar{width:100px;height:100px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.bt-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* CTA */
+.cta{padding:80px 64px}
+.cta-inner{max-width:1100px;margin:0 auto;background:var(--navy);border-radius:var(--r16);padding:80px;text-align:center;position:relative;overflow:hidden}
+.cta-blob{position:absolute;border-radius:50%;pointer-events:none}
+.cta-blob-1{width:300px;height:300px;background:var(--navy-mid);opacity:.5;top:-80px;right:-80px;filter:blur(60px)}
+.cta-blob-2{width:300px;height:300px;background:var(--navy-light);opacity:.15;bottom:-80px;left:-80px;filter:blur(60px)}
+.cta-inner h2{font-family:'Manrope',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:800;color:#fff;letter-spacing:-.04em;margin-bottom:16px;position:relative;z-index:1}
+.cta-sub{font-size:15px;color:rgba(255,255,255,.6);max-width:480px;margin:0 auto 40px;line-height:1.7;position:relative;z-index:1}
+.cta-btns{display:flex;gap:12px;justify-content:center;position:relative;z-index:1}
+.btn-white{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:#fff;color:var(--navy);border:none;cursor:pointer;padding:16px 40px;border-radius:var(--r8);transition:all .3s var(--ease);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-white:hover{transform:scale(1.04)}
+.btn-outline{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:transparent;color:#fff;border:.5px solid rgba(255,255,255,.25);cursor:pointer;padding:16px 40px;border-radius:var(--r8);transition:all .3s var(--ease)}
+.btn-outline:hover{background:rgba(255,255,255,.1)}
+
+/* SHARED FOOTER */
+footer{background:var(--navy);padding:48px 64px 32px;text-align:center}
+.footer-logo{font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.04em;color:#fff;margin-bottom:28px}
+.footer-links{display:flex;gap:36px;justify-content:center;margin-bottom:32px;list-style:none;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.8)}
+.footer-line{width:64px;height:.5px;background:rgba(255,255,255,.1);margin:0 auto 24px}
+.footer-copy{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  nav{padding:0 24px}.nav-links,.nav-cta{display:none}.nav-toggle{display:flex}
+  .hero-content{padding:100px 24px 60px}
+  .story-grid,.bt-4{grid-template-columns:1fr}
+  .bento-timeline{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .bt-cell{grid-column:span 1 !important;grid-row:span 1 !important;min-height:240px}
+  .section-pad{padding:64px 24px}
+  .cta{padding:64px 24px}.cta-inner{padding:48px 24px}
+  .cta-btns{flex-direction:column;align-items:center}
+  footer{padding:40px 24px 24px}
+}
+.popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #111;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  z-index: 1000;
+}
+
+.popup.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-logo" href="index1 (2).html"><svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="56" height="56" rx="6" fill="#10094e"/><rect x="32" y="32" width="56" height="56" rx="6" fill="none" stroke="#e11d48" stroke-width="7"/><rect x="42" y="42" width="28" height="28" rx="4" fill="#e11d48"/><rect x="52" y="52" width="10" height="10" rx="2" fill="#10094e"/></svg>Janapriya Upscale</a>
+  <ul class="nav-links">
+    <li><a href="index1.html">Properties</a></li>
+    <li><a href="legacy.html" class="active">Legacy</a></li>
+    <li><a href="p1.html">Projects</a></li>
+    <li><a href="aboutus.html">About Us</a></li>
+    <li><a href="CONTACT.HTML">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Book a Visit</button>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index1.html">Properties</a><a href="legacy.html">Legacy</a>
+  <a href="p1.html">Projects</a><a href="aboutus.html">About Us</a><a href="CONTACT.HTML">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8Qvouwrj6Lha9WhKC90k84HwNzjV1KKbv91GW8WDSY7L6rciw7rippsZjKP-jjHuZhL193rwJL0W_co_gg_M45MpnmPWKvGqtJImpM_aRI25U2q1PnfouDoVmjcRJA6V3_ATtvwZLShAaDv2Et1QthfRr1cewo9MiMnsMVgrcliDXVdIz8lrpVmavlvfvptJJqaij2yB2gjf3PUplIxSQqRl9fVhwkRlRsYHsDcAXM1GYmDZYrTqewKBUox5O7_Axw54ksVZT8wGZ" alt="Legacy hero"/></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Est. 1985</span>
+    <h1>Three Decades of <span>Defining</span> Horizons.</h1>
+    <p class="hero-sub">For 40 years, Janapriya Upscale has been the silent architect behind the city's most prestigious landmarks, blending permanence with poetic design.</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="section-pad">
+  <div class="max-w">
+    <div class="story-grid">
+      <div class="story-img-wrap reveal">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA92JmmcKCXXTD6qSgeVxb5BbeKiGpFMdFuJTbsoDSLGC_uT6zxeEzu75Z8VISAIbZ9-9u1AwSWTFxB1So2qJYbJMXaZlUlL_n-swRlePZB9x577jB0cEoyRNAEMoGj7qvL5mBl50btj1I3yaNAM5dRAKY1YgOHkSMeL-C59e7JrCQnH-oa6XbLRY2r9QNO7c0m33UF8Ypw6jYCG0khy-WwvDGg5MLq47bWybximEEYqvYQ7DT1PBUQI3CD-RcE8Swk_-wAXTIoB0A" alt="Genesis"/>
+        <div class="story-float"><span class="story-float-num">40+</span><span class="story-float-lbl">Years of Excellence</span></div>
+      </div>
+      <div class="story-text reveal" style="transition-delay:.2s">
+        <h2 class="section-h2">Our Genesis</h2>
+        <hr class="story-rule"/>
+        <p class="lead">"Luxury is not about excess. It is about the precision of space, the quality of light, and the legacy we leave for the generations that follow."</p>
+        <p style="color:#474650;margin-top:20px;line-height:1.75">Founded in 1985, Janapriya Upscale emerged from a vision to challenge the transient nature of modern construction. We didn't want to build houses; we wanted to curate environments where heritage meets the future.</p>
+        <div class="stats-mini">
+          <div><div class="stat-mini-num">70,000+</div><span class="stat-mini-lbl">Units Delivered</span></div>
+          <div><div class="stat-mini-num">150M+</div><span class="stat-mini-lbl">Sq. Ft Built</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE BENTO -->
+<section class="section-pad section-alt">
+  <div class="max-w">
+    <div style="text-align:center;margin-bottom:64px" class="reveal">
+      <span class="eyebrow">The Monograph</span>
+      <h2 class="section-h2">Iconic Milestones</h2>
+    </div>
+    <div class="bento-timeline reveal" style="transition-delay:.1s">
+      <!-- 1985 -->
+      <div class="bt-cell bt-1">
+        <img class="bt-bg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJIiqb3ddERtxw1TSjsgPkFDytQ4XKSwwjJCvXwhgLrtlaZf0_xqaO_8afXQhp6hWpGZeFotAqD2sH6-H5HoDOwVthZZTSD-ZNiCIQZ-jebSN_cuNXvYUTBswAMv5bJgyZnmmcOEfrLiD0Tyn24QbRFkzmoyWIfupE4a57k0W7Te61Pl9ozs3uvhXGdyBK3QvgvHomXBg1yMx24D7PWbVKNKEYKxG0BvJ2G6yD15h2sE8CORboUmkKw-E0wHpMvOUuq-OkkLxFWUje" alt=""/>
+        <span class="bt-year t-navy">1985</span>
+        <div class="bt-title t-navy">The Foundation</div>
+        <div class="bt-text t-navy-light">Acquisition of our first 50-acre master-planned community site, setting the standard for gated luxury living in Hyderabad.</div>
+      </div>
+      <!-- 2002 tall -->
+      <div class="bt-cell bt-2">
+        <img class="bt-bg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBopeKlOIrh7cRxIReXy-SFcKFHJ4LctNg62gKuuSJX6VTFlVwVdqkeHoCQ1o9eEsjS-wG5Lmc27C6xBRAeM_uLgK0HhYv6j_UPe-bIRaELCAmzmvkc-MQRoCt4SxgqxYtsoksNMYCYd5CyJV9atBUfZwGPxtvt8pj3jd_02NkjLevxr0iytZPewLTOBU6cSCfADqycZT23TiADC4n2mT9ggGr8Sepqyn4vq4sPHDFxhLa0wvAh2xA0VOAXiq_9VMWx6wm9KSzlYz9v" alt=""/>
+        <span class="bt-year t-white">2002</span>
+        <div class="bt-title t-white">Vertical Expansion</div>
+        <div class="bt-text" style="color:rgba(255,255,255,.7)">Introducing 'The Crest' – our first luxury high-rise development with 360-degree skyline views across Hyderabad.</div>
+      </div>
+      <!-- 2010 -->
+      <div class="bt-cell bt-3">
+        <span style="font-family:'Manrope',sans-serif;font-size:52px;font-weight:800;letter-spacing:-.04em;display:block;margin-bottom:16px">2010</span>
+        <div class="bt-title" style="font-size:16px;letter-spacing:.1em;text-transform:uppercase">Global Design Award</div>
+        <div class="bt-text" style="margin-top:12px;font-size:13px">Winner of the International Sustainable Housing Award for Project Veridian.</div>
+      </div>
+      <!-- 2020 -->
+      <div class="bt-cell bt-4">
+        <div class="bt-avatar"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMxxKhTTd8Q7-8QJMiV6LyOFByNhPvRpeJw1xMh_McK2WXOBXCPJnUH0ecfDlDJGV7cc7ldmpgeoxEBpsUQui5_uPNUYcgOHxVT6sXDAgdLzx4FWTZcAm_kIRvPT4hultQ_mrsbUEwJrJpaVbrt4ZUvVeVVGOSsqtkzUdUc2Typv1OYBa1C5DVVMb_X32u6txyRmx8y2AjqDyiNL1rc9mabMrZMzooWXnb2f7pHD5af6izPBaO2RxLs9HhMDv07a-sU-SFGRiFlgH8" alt=""/></div>
+        <div>
+          <span style="font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy-light);display:block;margin-bottom:8px">2020 — New Leadership</span>
+          <div class="bt-title t-navy" style="font-size:20px">Next Generation Takes the Helm</div>
+          <div class="bt-text t-navy-light" style="margin-top:8px;font-size:13px">Mr. Kranti Kiran Reddy assumes the role of Managing Director, ushering in an era of smart construction and global-standard design.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner reveal">
+    <div class="cta-blob cta-blob-1"></div>
+    <div class="cta-blob cta-blob-2"></div>
+    <h2>Be Part of the Legacy.</h2>
+    <p class="cta-sub">Explore our curated collection of premium residences and find your place in Janapriya's story.</p>
+    <div class="cta-btns"><button class="btn-white">Explore Projects</button><button class="btn-outline">Our Heritage</button></div>
+  </div>
+</section>
+<div id="popup" class="popup">
+  <p>🔥 Limited Offer! Book your dream flat today.</p>
+</div>
+
+<script>
+  window.onload = function() {
+    const popup = document.getElementById("popup");
+
+    // Show popup
+    setTimeout(() => {
+      popup.classList.add("show");
+    }, 1000); // show after 1 sec
+
+    // Hide popup after 10 seconds
+    setTimeout(() => {
+      popup.classList.remove("show");
+    }, 11000); // 1s delay + 10s visible
+  };
+</script>
+<footer>
+  <div class="footer-logo">Janapriya Upscale</div>
+  <ul class="footer-links">
+    <li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li>
+    <li><a href="#">Press Kit</a></li><li><a href="#">Investor Relations</a></li>
+  </ul>
+  <div class="footer-line"></div>
+  <p class="footer-copy">© 2025 Janapriya Upscale. Architectural Monograph Series.</p>
+</footer>
+
+<script>
+var toggle=document.getElementById('navToggle'),menu=document.getElementById('mobileMenu'),bars=toggle.querySelectorAll('span');
+toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');bars[0].style.transform=o?'translateY(7px) rotate(45deg)':'';bars[1].style.opacity=o?'0':'1';bars[2].style.transform=o?'translateY(-7px) rotate(-45deg)':'';});
+var reveals=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.08});
+reveals.forEach(function(el){obs.observe(el);});
+var nb=document.getElementById('navbar');
+window.addEventListener('scroll',function(){nb.style.boxShadow=window.scrollY>10?'0 4px 24px rgba(16,9,78,0.08)':'none';});
+</script>
+</body>
+</html>
